@@ -37,7 +37,43 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
     <link rel="icon" type="image/png" href="images/avatar.png">
 
-    <script async defer data-website-id="b6f6982a-8394-4067-9a48-307f494dd0c4" src="https://umami.wartner.cloud/umami.js"></script>
+    <script async defer data-website-id="b6f6982a-8394-4067-9a48-307f494dd0c4" data-auto-track="false" src="https://umami.wartner.cloud/umami.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.1/cookieconsent.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.1/cookieconsent.min.js" data-cfasync="false"></script>
+    <script>
+        window.addEventListener('load', function() {
+            window.cookieconsent.initialise({
+                revokeBtn: "<div class='cc-revoke'></div>",
+                type: "opt-in",
+                theme: "edgeless",
+                palette: {
+                    popup: {
+                        background: "#eee",
+                        text: "#889"
+                    },
+                    button: {
+                        background: "#58f",
+                        text: "#fff"
+                    }
+                },
+                content: {
+                    link: "Cookies",
+                    href: "https://2gdpr.com/cookies"
+                },
+                onInitialise: function(status) {
+                    if (status == cookieconsent.status.allow) myScripts();
+                },
+                onStatusChange: function(status) {
+                    if (this.hasConsented()) myScripts();
+                }
+            })
+        });
+
+        function myScripts() {
+            umami.trackView('/');
+        }
+    </script>
 
 </head>
 
@@ -155,7 +191,7 @@
             This also includes a link to the LittleLink repository to make forking LittleLink easier.
             You can edit or remove anything here to make your own footer.
         -->
-                <p><a href="privacy.html">Privacy Policy</a> | This website is tracked by a selfhosted <a href="https://umami.is/" target="_blank" rel="noopener noreferrer">Umami</a> instance. You can see the insights
+                <p>This website is tracked by a selfhosted <a href="https://umami.is/" target="_blank" rel="noopener noreferrer">Umami</a> instance. You can see the insights
                     <a href="https://umami.wartner.cloud/share/4ukR2cFk/wartner.me" target="_blank" rel="noopener noreferrer">here</a>.
                 </p>
 
